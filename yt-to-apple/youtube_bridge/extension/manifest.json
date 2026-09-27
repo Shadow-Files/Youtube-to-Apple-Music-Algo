@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube to Apple Music Bridge",
+  "version": "0.2",
+  "description": "Bridges YouTube playback to Apple Music Web.",
+  "permissions": [
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://music.apple.com/*",
+    "http://localhost:5005/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://music.apple.com/*"
+      ],
+      "js": [
+        "apple_music.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
